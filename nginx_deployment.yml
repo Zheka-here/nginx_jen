@@ -1,0 +1,9 @@
+---
+- name: Installing_mc_for_centos
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install_mc
+      yum:
+        name: mc
+        state: present

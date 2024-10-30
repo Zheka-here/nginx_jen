@@ -1,9 +1,19 @@
----
-- name: Installing_mc_for_centos
-  hosts: all
-  become: yes
-  tasks:
-    - name: Install_mc
-      yum:
-        name: mc
-        state: present
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
